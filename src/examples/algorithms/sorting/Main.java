@@ -1,44 +1,32 @@
 package examples.algorithms.sorting;
 
-import java.util.*;
+import examples.algorithms.sorting.algorithms.InsertionSort;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Main {
+    public static void main(String[] args) {
+        int randArraySize;
+        int[] randIntArr;
+
+        for (int i = 0; i < 10; i++) {
+            randArraySize = 100 + i * 100;
+            randIntArr = randomIntArray(randArraySize);
+            List<Long> results = new ArrayList<>();
+            for (int j = 0; j < 10; j++) {
+                results.add(InsertionSort.howManySteps(randIntArr));
+            }
+            System.out.printf("n=% 5d, steps=% 9d%n", randArraySize, reduceToAvg(results));
+        }
+    }
 
     public static int[] randomIntArray(int length) {
         return new Random().ints(length, 0, length).toArray();
     }
 
-    public static void main(String[] args) {
-
-        int randArraySize = 1000;
-        int numberOfTries = 10000;
-
-        int[] randIntArr;
-        List<Long> resultsListQuickSort = new ArrayList<>();
-        List<Long> resultsListMergeSort = new ArrayList<>();
-        List<Long> resultsListInsertionSort = new ArrayList<>();
-        List<Long> resultsListShellSort = new ArrayList<>();
-
-        for (int i = 0; i < numberOfTries; i++) {
-            randIntArr = randomIntArray(randArraySize);
-
-            resultsListQuickSort.add(QuickSort.howManySteps(randIntArr));
-            resultsListMergeSort.add(MergeSort.howManySteps(randIntArr));
-            resultsListInsertionSort.add(InsertionSort.howManySteps(randIntArr));
-            resultsListShellSort.add(ShellSort.howManySteps(randIntArr));
-        }
-
-        System.out.println(numberOfTries + "-tries-average number of steps to sort " + randArraySize + "-element array:");
-        System.out.printf("quick sort:     %d%n",
-                            resultsListQuickSort.stream().reduce(0L, Long::sum) / numberOfTries);
-        System.out.printf("merge sort:     %d%n",
-                            resultsListMergeSort.stream().reduce(0L, Long::sum) / numberOfTries);
-        System.out.printf("insertion sort: %d%n",
-                            resultsListInsertionSort.stream().reduce(0L, Long::sum) / numberOfTries);
-        System.out.printf("Shell sort:     %d%n",
-                            resultsListShellSort.stream().reduce(0L, Long::sum) / numberOfTries);
-
-
-
+    public static long reduceToAvg(List<Long> list) {
+        return list.stream().reduce(0L, Long::sum) / list.size();
     }
 }

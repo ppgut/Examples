@@ -1,4 +1,4 @@
-package examples.algorithms.sorting;
+package examples.algorithms.sorting.algorithms;
 
 import java.util.ArrayList;
 import java.util.Collections;

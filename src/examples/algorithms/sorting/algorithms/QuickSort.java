@@ -1,4 +1,4 @@
-package examples.algorithms.sorting;
+package examples.algorithms.sorting.algorithms;
 
 public class QuickSort {
 
@@ -31,15 +31,15 @@ public class QuickSort {
 
         for (int j = start; j < end; j++) {             // end-element is a pivot
             if (arrayToSort[j] <= pivot) {              // comparing each element to the left of pivot with pivot value
-                counter += 1;
                 if (i != j) {                           // if all elements are smaller than pivot value
-                     tmp = arrayToSort[i];              //      'i' ends up being equal to 'end'
-                     arrayToSort[i] = arrayToSort[j];   // if all elements are greater than pivot value
-                     arrayToSort[j] = tmp;              //      'i' stays equal to 'start' for whole loop
+                    tmp = arrayToSort[i];               //      'i' ends up being equal to 'end'
+                    arrayToSort[i] = arrayToSort[j];    // if all elements are greater than pivot value
+                    arrayToSort[j] = tmp;               //      'i' stays equal to 'start' for whole loop
                     counter += 3;
                  }                                      // in all other cases 'start' < 'i' < 'end'
                 i++;                                    //
             }
+            counter += 1;
         }
 
         // 'i' is an index of the first value in an array that is greater than pivot value
