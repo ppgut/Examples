@@ -8,8 +8,8 @@ public class CompareSortingAlgorithms {
 
     public static void main(String[] args) {
 
-        int randArraySize = 10000;
-        int numberOfTries = 100;
+        int randArraySize = 500;
+        int numberOfTries = 1000;
         int[] randIntArr;
 
         List<Long> resultsListQuickSort = new ArrayList<>();

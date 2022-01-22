@@ -7,15 +7,16 @@ public class QuickSort {
     public static long howManySteps(int[] intArray) {
         counter = 0;
         int[] arrayToSort = intArray.clone();
-        quickSort(arrayToSort, 0, arrayToSort.length - 1);
+        quickSort2(arrayToSort, 0, arrayToSort.length - 1);
+        // quickSort(arrayToSort, 0, arrayToSort.length-1);
         return counter;
     }
 
     public static void sort(int[] intArray) {
-        quickSort(intArray, 0, intArray.length - 1);
+        quickSort2(intArray, 0, intArray.length - 1);
     }
 
-    private static void quickSort(int[] arrayToSort, int start, int end) {
+    private static void quickSort2(int[] arrayToSort, int start, int end) {
 
         if (end == start)                  // for one-element array no need for sort
             return;
@@ -55,9 +56,48 @@ public class QuickSort {
         }
 
         if (i > start)      // if 'i' == start all values are greater than pivot (no elements to the left of pivot)
-            quickSort(arrayToSort, start, i - 1); // lef side
+            quickSort2(arrayToSort, start, i - 1); // lef side
 
         if (i < end)        // if 'i' == end all values are smaller than pivot (no elements to the right of pivot)
-            quickSort(arrayToSort, i + 1, end);   // right side
+            quickSort2(arrayToSort, i + 1, end);   // right side
+    }
+
+    // https://www.baeldung.com/java-quicksort
+    public static void quickSort(int arr[], int begin, int end) {
+        if (begin < end) {
+            counter +=1;
+            int partitionIndex = partition(arr, begin, end);
+            counter += 1;
+
+            quickSort(arr, begin, partitionIndex-1);
+            quickSort(arr, partitionIndex+1, end);
+        }
+    }
+
+    private static int partition(int arr[], int begin, int end) {
+        int pivot = arr[end];
+        int i = (begin-1);
+        counter += 2;
+
+        for (int j = begin; j < end; j++) {
+            counter += 1;
+            if (arr[j] <= pivot) {
+                i++;
+                counter += 1;
+
+                int swapTemp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = swapTemp;
+                counter += 3;
+            }
+            counter += 1;
+        }
+
+        int swapTemp = arr[i+1];
+        arr[i+1] = arr[end];
+        arr[end] = swapTemp;
+        counter += 3;
+
+        return i+1;
     }
 }

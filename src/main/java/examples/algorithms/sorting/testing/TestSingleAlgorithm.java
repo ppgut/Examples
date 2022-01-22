@@ -15,7 +15,7 @@ public class TestSingleAlgorithm {
         Scanner scanner = new Scanner(System.in);
         List<List<String>> csvLines = new ArrayList<>();
         List<String> csvLine = new ArrayList<>();
-        String csvResultsFilePath = "";
+        String csvResultsFilePath = "./src/main/java/examples/algorithms/sorting/testing/";
 
         // choose sort algorithm
         System.out.print("""
@@ -65,7 +65,7 @@ public class TestSingleAlgorithm {
             randIntArr = randomIntArray(randArraySize);
             // do 10 tests of sorting
             List<Long> results = new ArrayList<>();
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < 1; j++) {
                 switch (algorithmNumber) {
                     case 1 -> results.add(BubbleSort.howManySteps(randIntArr));
                     case 2 -> results.add(InsertionSort.howManySteps(randIntArr));
